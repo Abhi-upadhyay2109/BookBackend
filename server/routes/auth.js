@@ -56,13 +56,12 @@ router.post('/login', async (req, res) => {
     const token = generateToken(user._id);
     
     res.cookie('token', token, {
-      httpOnly: false,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
-      maxAge: 86400000 
-    });
-    
-    res.json({ message: 'Logged in successfully' });
+  httpOnly: true,
+  secure: process.env.NODE_ENV === 'production',
+  sameSite: 'strict',
+  maxAge: 86400000
+});
+res.json({ message: 'Logged in successfully' });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
