@@ -55,12 +55,14 @@ router.post('/login', async (req, res) => {
     
     const token = generateToken(user._id);
     
-    res.cookie('token', token, {
-  httpOnly: true,
-  secure: process.env.NODE_ENV === 'production',
-  sameSite: 'strict',
-  maxAge: 86400000
-});
+   res.cookie('token', token, {
+      httpOnly: true,
+      secure: true, // Always true in production
+      sameSite: 'none', // Required for cross-site
+      maxAge: 86400000, // 1 day
+      domain: process.env.FRONTEND_URL
+ // e.g., '.yourdomain.com'
+    });
 res.json({ message: 'Logged in successfully' });
   } catch (err) {
     res.status(500).json({ message: err.message });
