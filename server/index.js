@@ -12,7 +12,7 @@ const app = express();
 
 
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'https://books12.netlify.app/',
+  origin: 'https://books12.netlify.app', 
   credentials: true
 }));
 app.use(express.json());
