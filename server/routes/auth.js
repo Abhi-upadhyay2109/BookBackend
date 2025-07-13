@@ -60,7 +60,7 @@ router.post('/login', async (req, res) => {
       secure: true, // Always true in production
       sameSite: 'none', // Required for cross-site
       maxAge: 86400000, // 1 day
-      domain: process.env.FRONTEND_URL
+      
  // e.g., '.yourdomain.com'
     });
 res.json({ message: 'Logged in successfully' });
